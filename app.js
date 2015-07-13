@@ -11,7 +11,7 @@ require('./models/models');
 
 //connect to Mongo
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://scottdschwalbe@gmail.com:yfe7h8wn0515@ds047712.mongolab.com:47712/heroku_vtf5vf12');
+//mongoose.connect('mongodb://scottdschwalbe@gmail.com:yfe7h8wn0515@ds047712.mongolab.com:47712/heroku_vtf5vf12');
 
 //routes
 var index = require('./routes/index');
