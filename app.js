@@ -13,7 +13,14 @@ require('./models/models');
 var mongoose = require('mongoose');
 var uri = process.env.MONGOLAB_URI;
 //mongoose.connect('mongodb://localhost/test-intapps2');
-mongoose.connect(uri);
+mongoose.connect(uri, function(err, res) {
+  if (err) {
+    console.log('ERROR connecting to ' + uri '. ' + err);
+  }
+  else {
+    console.log('Connected to ' + uri);
+  }
+});
 
 //routes
 var index = require('./routes/index');
