@@ -11,8 +11,10 @@ require('./models/models');
 
 //connect to Mongo
 var mongoose = require('mongoose');
+var uri = process.env.MONGOLAB_URI;
+console.log(uri);
 //mongoose.connect('mongodb://localhost/test-intapps2');
-mongoose.connect('mongodb://heroku_vtf5vf12:bc7o0c58do4et1tfqoeiq38hbn@ds047712.mongolab.com:47712/heroku_vtf5vf12');
+mongoose.connect(uri);
 
 //routes
 var index = require('./routes/index');
