@@ -1,4 +1,3 @@
-console.log('yep');
 var app = angular.module('intApp', ['ngRoute', 'ngResource']);
 app.config(function($routeProvider) {
 	$routeProvider
@@ -15,24 +14,14 @@ app.config(function($routeProvider) {
 //service for adding user to database
 app.factory('postService', function($resource) {
 	return $resource('/api/posts');
-})
-app.controller('mainCtrl', function(postService, $scope, $location) {
+});
+
+app.controller('mainCtrl', function(postService, $scope, $rootScope, $location) {
 	$scope.users = postService.query();
-	$scope.newUser = {
-		firstname: '',
-		lastname: '',
-		email: '',
-		zipcode: ''
-	}
 	$scope.addUser = function() {
+		$rootScope.currentUser = $scope.newUser;
 		postService.save($scope.newUser, function() {
 			$scope.users = postService.query();
-			$scope.newUser = {
-				firstname: '',
-				lastname: '',
-				email: '',
-				zipcode: ''
-			}
 			$location.path('/entries');
 		})
 	}
