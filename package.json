@@ -1,6 +1,6 @@
 {
   "name": "intapp2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -19,9 +19,6 @@
     "nodemailer": "^1.4.0",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
-  },
-  "repository": {
-    "type": "git"
   },
   "engines": {
     "node": "0.12.7"
