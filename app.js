@@ -15,7 +15,7 @@ var uri = process.env.MONGOLAB_URI;
 //mongoose.connect('mongodb://localhost/test-intapps2');
 mongoose.connect(uri, function(err, res) {
   if (err) {
-    console.log('ERROR connecting to ' + uri '. ' + err);
+    console.log('ERROR connecting to ' + uri + '. ' + err);
   }
   else {
     console.log('Connected to ' + uri);
