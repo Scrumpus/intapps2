@@ -20,6 +20,9 @@
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
   },
+  "repository": {
+    "type": "git"
+  },
   "engines": {
     "node": "0.12.7"
   }
