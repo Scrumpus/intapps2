@@ -15,8 +15,12 @@ app.config(function($routeProvider) {
 app.factory('postService', function($resource) {
 	return $resource('/api/posts');
 });
+app.factory('downloadService', function($resource) {
+	return $resource('/api/download');
+})
 
-app.controller('mainCtrl', function(postService, $sessionStorage, $scope, $rootScope, $location) {
+app.controller('mainCtrl', function(postService, $sessionStorage, 
+									downloadService, $scope, $rootScope, $location) {
 	$scope.users = postService.query();
 	$scope.currentUser = $sessionStorage.currentUser;
 	$scope.addUser = function(form) {

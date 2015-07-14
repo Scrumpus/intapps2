@@ -1,8 +1,12 @@
+// creating and show new entries
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
+var csv = require('express-csv');
 
+//handle posts
 router.route('/posts')
 
 	//create a new post
@@ -30,4 +34,14 @@ router.route('/posts')
 			return res.send(200, users);
 		})
 	});
+
+//export entries as csv
+router.route('/download')
+	.get(function(req, res) {
+		User.find(function(err, users) {
+			res.csv(users);
+		});
+	});
+
+
 module.exports = router;
