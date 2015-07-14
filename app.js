@@ -11,9 +11,7 @@ require('./models/models');
 
 //connect to Mongo
 var mongoose = require('mongoose');
-var uri = process.env.MONGOLAB_URI;
-//mongoose.connect('mongodb://localhost/test-intapps2');
-
+var uri = process.env.MONGOLAB_URI || 'mongodb://localhost/test-intapps2';
 mongoose.connect(uri, function(err, res) {
   if (err) {
     console.log('ERROR connecting to ' + uri + '. ' + err);
