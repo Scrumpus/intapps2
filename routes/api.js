@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
-var csv = require('express-csv');
+var csv = require('csv');
 
 //handle posts
 router.route('/posts')
@@ -38,9 +38,25 @@ router.route('/posts')
 //export entries as csv
 router.route('/download')
 	.get(function(req, res) {
-		User.find(function(err, users) {
-			res.csv(users);
-		});
+		User.find(function(err, results) {
+			if(err) { throw err; }
+
+			var users = results.map(function(user) {
+				return {
+					firstname: user.firstname,
+					lastname: user.lastname,
+					email: user.email,
+					zipcode: user.zipcode
+				}
+			});
+
+			csv.stringify(users, function(err2, data) {
+				if (err) { throw err; }
+				res.set({"Content-Disposition": "attachment; filename='users.csv'"});
+				console.log('sending data');
+				res.send(data);
+			});
+		})
 	});
 
 

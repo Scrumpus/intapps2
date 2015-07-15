@@ -34,5 +34,9 @@ app.controller('mainCtrl', function(postService, $sessionStorage,
 			$location.path('/entries');
 		})
 	}
+
+	$scope.download = function() {
+		downloadService.get();
+	}
 });
 
