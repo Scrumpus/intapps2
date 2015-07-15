@@ -49,13 +49,16 @@ router.route('/download')
 					zipcode: user.zipcode
 				}
 			});
-
+			
 			csv.stringify(users, function(err2, data) {
 				if (err) { throw err; }
-				res.set({"Content-Disposition": "attachment; filename='users.csv'"});
-				console.log('sending data');
-				res.send(data);
+				res.writeHead(200, {
+					"Content-Type": "text/csv",
+					"Content-Disposition": "attachment; filename=\"users.csv\""
+				});
+				res.end(data);
 			});
+				
 		})
 	});
 
