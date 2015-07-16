@@ -5,6 +5,7 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var User = mongoose.model('User');
 var csv = require('csv');
+var fs = require('fs');
 
 //handle posts
 router.route('/posts')
@@ -12,7 +13,6 @@ router.route('/posts')
 	//create a new post
 	.post(function(req, res) {
 		var user = new User();
-		console.log(req.body);
 		user.firstname = req.body.firstname;
 		user.lastname = req.body.lastname;
 		user.email = req.body.email;
@@ -39,7 +39,7 @@ router.route('/posts')
 router.route('/download')
 	.get(function(req, res) {
 		User.find(function(err, results) {
-			if(err) { throw err; }
+			if(err) throw err;
 
 			var users = results.map(function(user) {
 				return {
@@ -51,14 +51,13 @@ router.route('/download')
 			});
 			
 			csv.stringify(users, function(err2, data) {
-				if (err) { throw err; }
+				if (err) throw err;
+				res.set({"Content-Disposition": "attachment; filename=\"entries.csv\""});
 				res.writeHead(200, {
-					"Content-Type": "text/csv",
-					"Content-Disposition": "attachment; filename=\"users.csv\""
-				});
+			        'Content-Type': 'text/csv'
+			    });
 				res.end(data);
 			});
-				
 		})
 	});
 

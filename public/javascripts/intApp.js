@@ -35,8 +35,5 @@ app.controller('mainCtrl', function(postService, $sessionStorage,
 		})
 	}
 
-	$scope.download = function() {
-		downloadService.get();
-	}
 });
 
