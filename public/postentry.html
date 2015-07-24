@@ -1,22 +1,3 @@
-<div id="entries">
+<div id="postentry">
 	<h3>Thanks for entering, {{ currentUser.firstname }}!</h3>
-	<h4>Entries: {{ users.length }}</h4>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Zip Code</th>
-			</tr>
-			<tbody>
-				<tr ng-repeat="user in users">
-					<td>{{ user.firstname }}</td>
-					<td>{{ user.lastname }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.zipcode }}</td>
-				</tr>
-			</tbody>
-	</table>
-	<a href="/api/download">Download entries</a>
 </div>

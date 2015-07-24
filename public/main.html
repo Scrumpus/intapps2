@@ -1,4 +1,7 @@
-<h2>Register</h2>
+<header>
+    <h2>Register</h2><span><a href="#/login">Login</a></span>
+</header>
+
 <form name="userForm" ng-submit="addUser(userForm)" novalidate>
 
 	<!-- FIRST NAME -->
@@ -29,7 +32,7 @@
         <input type="checkbox" name="rules" ng-model="rules" required> I agree to the Offical Rules
         <p class="help-block" ng-show="userForm.rules.$invalid && userForm.$submitted">You must agree to the official rules</p>
         </div>
-        <input type="checkbox" name="signmeup" ng-model="signmeup"> Sign me up!<br><br>
+        <input type="checkbox" name="signmeup" ng-model="newUser.signup"> Sign me up!<br><br>
         <button type="submit" class="btn btn-primary">Submit</button>
         
     </form>

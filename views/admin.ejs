@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app="intAppAdmin">
+	<head>
+		<title><%= title %></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheets/style.css">
+	</head>
+	<body ng-cloak>
+		<div id="admin" class="container" ng-controller="adminCtrl">
+			<h4>Entries: {{ users.length }}</h4>
+			<a href="/admin/logout">Logout</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Zip Code</th>
+					</tr>
+					<tbody>
+						<tr ng-repeat="user in users">
+							<td><input type="text" class="form-control" ng-model="user.firstname" value="{{user.firstname}}" class="form-control" ng-readonly="!user.editable"></td>
+							<td><input type="text" class="form-control" ng-model="user.lastname" value="{{user.lastname}}" ng-readonly="!user.editable"></td>
+							<td><input type="text" class="form-control" ng-model="user.email" value="{{user.email}}" ng-readonly="!user.editable"></td>
+							<td><input type="text" class="form-control" ng-model="user.zipcode" value="{{user.zipcode}}" ng-readonly="!user.editable"></td>
+							<td><div>
+								<button id="edit-button" ng-show="!user.editable" class="btn btn-primary" ng-click="edit(user)">Edit</button>
+								<button id="save-button" ng-show="user.editable" class="btn btn-primary" ng-click="save(user)">Save</button>
+							</div></td>
+							<td><button id="delete-button" class="btn btn-primary" ng-click="delete(user)">Delete</button></td>
+						</tr>
+					</tbody>
+			</table>
+			<div>
+			<label>Tweet Content</label><br>
+			<input type="text" class="form-control" ng-model="tweet.content" ng-readonly="!tweet.editable">
+			<button ng-show="!tweet.editable" ng-click="editTweet()">Edit</button>
+			<button ng-show="tweet.editable" ng-click="saveTweet()">Save</button>
+			</div>
+			<a id="download" href="/admin/download">Download entries</a><br>
+			<label>Send Email</label><br>
+			<textarea cols="30" rows="10" ng-model="emailContent"></textarea><br>
+			<button class="btn btn-primary" ng-click="email()">Send</button>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
+		<script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+		<script src="/javascripts/intAppAdmin.js"></script>
+	</body>
+</html>

@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'IntApp' });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('index', { title: 'IntApp' });
+});
+
+
 module.exports = router;

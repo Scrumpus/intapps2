@@ -7,6 +7,7 @@
   },
   "author": "scott-schwalbe",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "csv": "^0.4.5",
@@ -16,9 +17,12 @@
     "express-csv": "^0.6.0",
     "express-session": "^1.11.3",
     "jade": "~1.11.0",
-    "mongoose": "^4.0.7",
+    "mongoose": "^4.0.8",
     "morgan": "~1.6.1",
-    "nodemailer": "^1.4.0"
+    "nodemailer": "^1.4.0",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "sendgrid": "^1.9.1"
   },
   "engines": {
     "node": "0.12.7"

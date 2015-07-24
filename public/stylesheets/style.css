@@ -5,3 +5,12 @@
 .help-block {
 	color: red;
 }
+
+#download {
+	margin-left: 30%;
+}
+
+#tweet-content {
+	line-height: 100px;
+}
+

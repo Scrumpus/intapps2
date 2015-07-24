@@ -1,10 +1,10 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var passport = require('passport');
+var express =       require('express'),
+    path =          require('path'),
+    logger =        require('morgan'),
+    cookieParser =  require('cookie-parser'),
+    bodyParser =    require('body-parser'),
+    session =       require('express-session'),
+    passport =      require('passport');
 
 //initialize mongoose schemas
 require('./models/models');
@@ -23,7 +23,9 @@ mongoose.connect(uri, function(err, res) {
 
 //routes
 var index = require('./routes/index');
-var api = require('./routes/api');
+var entry = require('./routes/entry');
+var admin = require('./routes/admin');
+var auth = require('./routes/auth')(passport);
 
 var app = express();
 
@@ -34,18 +36,21 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(session({
+  secret: 'keyboard cat'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//allow static files to be used
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 app.use('/', index);
-app.use('/api', api);
+app.use('/entry', entry);
+app.use('/admin', admin);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,7 +59,15 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+//create admin
+var getAdmin = require('./admin-init');
+getAdmin();
+
+
 //Initialize Passport
+var initPassport = require('./passport-init');
+initPassport(passport);
+
 
 // error handlers
 

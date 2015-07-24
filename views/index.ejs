@@ -40,10 +40,12 @@
 		<div class="container" ng-view>
 			
 		</div><br>
-		<div id="sm-icons">
-			<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><br><br>
-		<div class="fb-share-button" data-href="http://gentle-sierra-3128.herokuapp.com/" data-layout="button_count"></div>
+
+		<div ng-controller="tweetCtrl" id="sm-icons">
+			<a id="twitter-link" ng-model="tweet.content" href="https://twitter.com/share" data-text="{{tweet.content}}" class="twitter-share-button">Tweet</a><br><br>
+			<div class="fb-share-button" data-href="http://gentle-sierra-3128.herokuapp.com/" data-layout="button_count"></div>
 		</div>
+		
 		
 
 		<!-- Scripts -->
